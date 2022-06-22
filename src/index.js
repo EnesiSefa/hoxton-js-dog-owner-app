@@ -25,10 +25,10 @@ let dogSection = document.querySelector('.main__dog-section')
 
 function addDogListItem(dog) {
 //   <li class="dogs-list__button">Mr. Bonkers</li>
-  let liEl = document.createElement('li')
-  liEl.className = 'dogs-list__button'
-  liEl.textContent = dog.name
-  dogList.append(liEl)
+  let addDogLiEl = document.createElement('li')
+  addDogLiEl.className = 'dogs-list__button'
+  addDogLiEl.textContent = dog.name
+  dogList.append(addDogLiEl)
 }
 
 function displayDog(dog) {
@@ -62,6 +62,7 @@ function displayDog(dog) {
   divEl2.className = "main__dog-section__btn"
   
   
+  
   let pEl2 = document.createElement("p")
   pEl2.className = "p-yes-no"
   pEl2.textContent = "yes!"
@@ -69,17 +70,35 @@ function displayDog(dog) {
   emEl.textContent = "Is naughty?"
   let buttonEl = document.createElement("button")
   buttonEl.textContent = "Good dog!"
+ 
+  buttonEl.addEventListener('click', function (event) {
 
-  
+    if (buttonEl.textContent === "Good dog!") {
+        pEl2.textContent = ''
+        pEl2.append(emEl)
+        pEl2.textContent += "No!"
+        buttonEl.textContent = "Bad dog!"
+    }
 
-  dogSection.append(h2El,imgEl,divEl,h3El,pElBio,divEl2,pEl2,emEl,buttonEl)
+    else if (buttonEl.textContent === "Bad dog!") {
+        pEl2.textContent = ''
+        pEl2.append(emEl)
+        pEl2.textContent += "Yes!"
+        buttonEl.textContent = "Good dog!"
+    }
+
+})
+
+  pEl2.append(emEl)
+  divEl.append(h3El,pElBio)
+  dogSection.append(h2El,imgEl,divEl,h3El,pElBio,divEl2,pEl2,buttonEl)
 }
-displayDog()
-displayDog()
 displayDog()
 
 for (let dog of data) {
   addDogListItem(dog)
+  displayDog(dog)
+
 }
 
 
