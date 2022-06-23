@@ -29,20 +29,28 @@ function addDogListItem(dog) {
   addDogLiEl.className = 'dogs-list__button'
   addDogLiEl.textContent = dog.name
   dogList.append(addDogLiEl)
+  addDogLiEl.addEventListener("click", function(){
+    displayDog(dog)
+  })
+}
+
+for (let dog of data) {
+  addDogListItem(dog)
 }
 
 function displayDog(dog) {
+ 
   // Remove previous content
   dogSection.textContent = ''
 
   // Add dog info
 
   let h2El = document.createElement("h2")
-  h2El.textContent = "Mr.Bonkers"
+  h2El.textContent = dog.name
   
 
   let imgEl = document.createElement("img")
-  imgEl.src = "https://curriculum-content.s3.amazonaws.com/js/woof-woof/dog_1.jpg"
+  imgEl.src = dog.image
   imgEl.alt =""
   
 
@@ -50,13 +58,10 @@ function displayDog(dog) {
   divEl.className = "main__dog-section__desc"
   
   let h3El = document.createElement("h3")
-  h3El.textContent = "Bio"
+  h3El.textContent = "bio"
  
   let pElBio = document.createElement("p")
-  pElBio.textContent = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum,
-    minima voluptates libero cumque rerum consequatur optio aliquid sint
-    eum maxime illo laborum omnis quo ab rem cupiditate nulla
-    perspiciatis`
+  pElBio.textContent = dog.bio
   
   let divEl2 = document.createElement("div")
   divEl2.className = "main__dog-section__btn"
@@ -93,13 +98,9 @@ function displayDog(dog) {
   divEl.append(h3El,pElBio)
   dogSection.append(h2El,imgEl,divEl,h3El,pElBio,divEl2,pEl2,buttonEl)
 }
-displayDog()
 
-for (let dog of data) {
-  addDogListItem(dog)
-  displayDog(dog)
 
-}
+
 
 
 
